@@ -1,4 +1,15 @@
-const numberOfFilms = +prompt('How many movies do you see?', '');
+'use strict';
+
+let numberOfFilms;
+
+
+function start() {
+    numberOfFilms = +prompt('How many movies do you see?', '');
+
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+      numberOfFilms = +prompt('How many movies do you see?', '');
+    }
+}
 
 const personalMovieDB = {
   count: numberOfFilms,
@@ -8,12 +19,32 @@ const personalMovieDB = {
   privat: false
 };
 
-const a = prompt('One of the last seeing films?', ''),
-      b = prompt('How would you rate it?', ''),
-      c = prompt('One of the last seeing films?', ''),
-      d = prompt('How would you rate it?', '');
+function rememberMyFilms() {
+    
+}
 
-      personalMovieDB.movies[a] = b;
-      personalMovieDB.movies[c] = d;
+function detectPersonalLevel() {
+  if (personalMovieDB.count < 10) {
+    console.log("Too little");
+  } else if (personalMovieDB.count >= 20 && personalMovieDB.count < 30) {
+    console.log("You're classic viewer");
+  } else if (personalMovieDB.count >= 30) {
+    console.log("You are cinemaman!");
+  } else {
+    console.log("Error");
+  }
+}
 
-      console.log(personalMovieDB);
+function showMyDB (hidden) {
+  if (!hidden) {
+    console.log(personalMovieDB);
+  }
+}
+
+showMyDB(personalMovieDB.privat)
+
+function writeYourGenres() {
+  for (let i = 1; i <= 3; i++) {
+    personalMovieDB.genres[i - 1] = prompt(`Your favorite genre with number ${1}`);
+  }
+}
